@@ -8,7 +8,7 @@ RUN python -m pip install --upgrade pip setuptools
 
 # Upgrade system packages to install security updates
 RUN apk update && \
-  apk upgrade && apt-get install -y make
+  apk upgrade
 
 # ---- Back-end builder image ----
 FROM base AS back-builder
@@ -17,6 +17,7 @@ WORKDIR /builder
 
 # Install Rust and Cargo using Alpine's package manager
 RUN apk add --no-cache \
+  make \
   build-base \
   libffi-dev \
   rust \
